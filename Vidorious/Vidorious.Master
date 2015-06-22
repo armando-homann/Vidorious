@@ -1,0 +1,321 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Vidorious.master.cs" Inherits="Vidorious.Vidorious" %>
+
+<!DOCTYPE html>
+
+<html class="boxed">
+<head runat="server">
+    <title>Vidorious</title>
+
+    <meta name="keywords" content="HTML5 Admin Template" />
+    <meta name="description" content="Porto Admin - Responsive HTML5 Template">
+    <meta name="author" content="okler.net">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <!-- Web Fonts  -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
+
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="assets/vendor/magnific-popup/magnific-popup.css" />
+    <link rel="stylesheet" href="assets/vendor/bootstrap-datepicker/css/datepicker3.css" />
+    <link rel="stylesheet" href="assets/vendor/owl-carousel/owl.carousel.css" />
+    <link rel="stylesheet" href="assets/vendor/owl-carousel/owl.theme.css" />
+    <link rel="stylesheet" href="Content/bootstrap/bootstrap-fileupload/bootstrap-fileupload.min.css" />
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="assets/stylesheets/theme.css" />
+
+    <!-- Skin CSS -->
+    <link rel="stylesheet" href="assets/stylesheets/skins/default.css" />
+
+    <!-- Theme Custom CSS -->
+    <link rel="stylesheet" href="assets/stylesheets/theme-custom.css">
+
+    <!-- Head Libs -->
+    <script src="assets/vendor/modernizr/modernizr.js"></script>
+    <link rel="stylesheet" href="assets/vendor/pnotify/pnotify.custom.css" />
+
+    <script>
+        $('#fileUpload').click(function (event) {
+            event.preventDefault()
+        });
+    </script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body style="background: url(Content/images/metal.jpg); background-size: 100%">
+    <form id="form1" runat="server" enctype="multipart/form-data">
+        <section class="body">
+            <!-- start: header -->
+            <header class="header">
+                <div class="logo-container">
+                    <a href="#" class="logo">
+                        <img src="Content/images/trex icon.png" height="50" alt="Vidorious" />
+                    </a>
+                    <div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
+                        <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
+                    </div>
+                </div>
+                <h2>Vidorious</h2>
+
+                <%--            <div class="header-right">
+                <span class="separator"></span>
+                <div id="userbox" class="userbox">
+                    <a href="#" data-toggle="dropdown">
+                        <figure class="profile-picture">
+                            <img src="assets/images/!logged-user.jpg" alt="Joseph Doe" class="img-circle" data-lock-picture="assets/images/!logged-user.jpg" />
+                        </figure>
+                        <div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
+                            <span class="name" style="color: white">John Doe Junior</span>
+                            <span class="role">administrator</span>
+                        </div>
+
+                        <i class="fa custom-caret"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <ul class="list-unstyled">
+                            <li class="divider"></li>
+                            <li>
+                                <a role="menuitem" tabindex="-1" href="pages-user-profile.html"><i class="fa fa-user"></i>My Profile</a>
+                            </li>
+                            <li>
+                                <a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i>Lock Screen</a>
+                            </li>
+                            <li>
+                                <a role="menuitem" tabindex="-1" href="pages-signin.html"><i class="fa fa-power-off"></i>Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>--%>
+            </header>
+            <!-- end: header -->
+
+
+
+            <%--        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <a class="mt-xs mb-xs mr-xs popup-with-zoom-anim btn btn-default" href="#small-dialog">Open with fade-zoom animation</a>
+                </div>
+                <div class="col-md-6">
+                    <a class="mt-xs mb-xs popup-with-move-anim btn btn-default" href="#small-dialog">Open with fade-slide animation</a>
+                </div>
+            </div>
+
+            <!-- Dialog -->
+            <div id="small-dialog" class="dialog dialog-sm zoom-anim-dialog mfp-hide">
+                <h1>Dialog example</h1>
+                <p>This is dummy copy. It is not meant to be read. It has been placed here solely to demonstrate the look and feel of finished, typeset text. Only for show. He who searches for meaning here will be sorely disappointed.</p>
+            </div>
+
+        </div>--%>
+
+            <div class="inner-wrapper" style="padding-bottom: 0">
+                <section role="main" class="content-body" style="border-radius: 0">
+                    <header class="page-header">
+                        <%--<h2>Vidorious</h2>--%>
+                        <div id="Div1" class="navbar-collapse collapse" style="padding: 0">
+                            <nav class="navbar navbar-inverse navbar-static-top">
+                                <div id="navbar" class="navbar-collapse collapse">
+                                    <ul class="nav navbar-nav">
+                                        <li id="navHome" runat="server"><a href="Home.aspx">Home</a></li>
+                                        <li id="navVideos" runat="server" class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Videos <span class="caret"></span></a>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li><a href="Videos.aspx">Watch</a></li>
+                                                <%--<li class="divider"></li>--%>
+                                                <li><a class="modal-with-form" href="#modalForm">Upload</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a class="popup-with-move-anim" href="#small-dialog">About</a></li>
+                                    </ul>
+
+                                    <!-- Dialog -->
+                                    <div id="small-dialog" class="dialog dialog-sm zoom-anim-dialog mfp-hide">
+                                        <h1>Vidorious</h1>
+                                        <p>
+                                            Author:  Armando Homann
+                                        <br />
+                                            Version:  1.0
+                                        <br />
+                                            © 2015 University of Johannesburg
+                                        <br />
+                                            All rights reserved.
+                                        </p>
+                                    </div>
+
+                                    <div class="right-wrapper pull-right" style="padding-right: 20px">
+                                        <ol id="bcWrapper" runat="server" class="breadcrumbs">
+                                            <li>
+                                                <a href="Home.aspx">
+                                                    <i class="fa fa-home"></i>
+                                                </a>
+                                            </li>
+                                        </ol>
+
+                                        <%--<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>--%>
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+                    </header>
+
+                    <asp:ScriptManager ID="sm" runat="server"></asp:ScriptManager>
+
+                    <!--Start: Modal Form -->
+                    <%--<div id="modalForm" class="modal-block modal-block-primary mfp-hide" runat="server">
+                        <section class="panel">
+                            <header class="panel-heading">
+                                <h2 id="headerVideoUpload" runat="server" class="panel-title">Video Upload</h2>
+                            </header>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <asp:Label ID="lblMessage" runat="server" Text="" class="required" Font-Bold="False" Font-Size="Small" ForeColor="Black" Style="vertical-align: sub"></asp:Label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <div class="fileupload fileupload-new" data-provides="fileupload" style="text-align: center">
+                                            <div class="input-append">
+                                                <div class="uneditable-input">
+                                                    <span class="fileupload-preview"></span>
+                                                </div>
+                                                <span class="btn btn-default btn-file">
+                                                    <span class="fileupload-exists">Change</span>
+                                                    <span class="fileupload-new">Browse</span>
+                                                    <input id="file1" runat="server" type="file">
+                                                    <asp:FileUpload ID="fileUpload" runat="server" Height="27px" />
+                                                </span>
+                                                <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Clear</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="panel-footer">
+                                <div class="row">
+                                    <div class="col-md-12 text-right">
+                                        <asp:LinkButton ID="btnUploadVideo" runat="server" class="btn btn-primary" ToolTip="Upload Video" CausesValidation="false" OnClick="btnUploadVideo_Click">Upload</asp:LinkButton>
+                                        <button id="btnVideoUpload" runat="server" class="btn btn-primary modal-confirm" onclick="">Upload</button>
+                                        <button class="btn btn-default modal-dismiss">Cancel</button>
+                                    </div>
+                                </div>
+                            </footer>
+                        </section>
+                    </div>--%>
+                    <!-- End: Modal Form -->
+
+                    <!-- start: page -->
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                    <!-- end: page -->
+                </section>
+            </div>
+
+            <div class="container" style="width: 100%; padding-left: 0; padding-right: 0">
+                <div class="panel-footer" style="background-color: #101010; border-radius: 0; padding-bottom: 35px; height: 35px">
+                    <p style="text-align: center"><a href="Home.aspx" style="color: green">Home </a>| <a href="Videos.aspx" style="color: green">Videos </a>| Vidorious © 2015 University of Johannesburg</p>
+                </div>
+            </div>
+
+            <%--<aside id="sidebar-right" class="sidebar-right" style="border-top-color: green">
+            <div class="nano">
+                <div class="nano-content">
+                    <a href="#" class="mobile-close visible-xs">Collapse <i class="fa fa-chevron-right"></i>
+                    </a>
+
+                    <div class="sidebar-right-wrapper">
+                        <div class="sidebar-widget widget-calendar">
+                            <h6>Upcoming Tasks</h6>
+                            <div data-plugin-datepicker data-plugin-skin="dark"></div>
+                            <ul>
+                                <li>
+                                    <time datetime="2014-04-19T00:00+00:00">04/19/2014</time>
+                                    <span>Company Meeting</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-widget widget-friends">
+                            <h6>Friends</h6>
+                            <ul>
+                                <li class="status-online">
+                                    <figure class="profile-picture">
+                                        <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
+                                    </figure>
+                                    <div class="profile-info">
+                                        <span class="name">Joseph Doe Junior</span>
+                                        <span class="title">Hey, how are you?</span>
+                                    </div>
+                                </li>
+                                <li class="status-online">
+                                    <figure class="profile-picture">
+                                        <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
+                                    </figure>
+                                    <div class="profile-info">
+                                        <span class="name">Joseph Doe Junior</span>
+                                        <span class="title">Hey, how are you?</span>
+                                    </div>
+                                </li>
+                                <li class="status-offline">
+                                    <figure class="profile-picture">
+                                        <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
+                                    </figure>
+                                    <div class="profile-info">
+                                        <span class="name">Joseph Doe Junior</span>
+                                        <span class="title">Hey, how are you?</span>
+                                    </div>
+                                </li>
+                                <li class="status-offline">
+                                    <figure class="profile-picture">
+                                        <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
+                                    </figure>
+                                    <div class="profile-info">
+                                        <span class="name">Joseph Doe Junior</span>
+                                        <span class="title">Hey, how are you?</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>--%>
+
+            <!-- Vendor -->
+            <script src="assets/vendor/jquery/jquery.js"></script>
+            <script src="assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
+            <script src="assets/vendor/bootstrap/js/bootstrap.js"></script>
+            <script src="assets/vendor/nanoscroller/nanoscroller.js"></script>
+            <script src="assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+            <script src="assets/vendor/magnific-popup/magnific-popup.js"></script>
+            <script src="assets/vendor/jquery-placeholder/jquery.placeholder.js"></script>
+            <script src="assets/vendor/owl-carousel/owl.carousel.js"></script>
+            <script src="Content/bootstrap/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
+
+            <!-- Specific Page Vendor -->
+
+            <!-- Theme Base, Components and Settings -->
+            <script src="assets/javascripts/theme.js"></script>
+
+            <!-- Theme Custom -->
+            <script src="assets/javascripts/theme.custom.js"></script>
+
+            <!-- Theme Initialization Files -->
+            <script src="assets/javascripts/theme.init.js"></script>
+
+            <!-- Examples -->
+            <script src="assets/javascripts/ui-elements/examples.widgets.js"></script>
+            <script src="assets/javascripts/ui-elements/examples.lightbox.js"></script>
+            <script src="assets/javascripts/ui-elements/examples.modals.js"></script>
+            <script src="assets/vendor/owl-carousel/owl.carousel.js"></script>
+        </section>
+    </form>
+</body>
+</html>
