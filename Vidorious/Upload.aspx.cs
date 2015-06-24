@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -41,6 +42,44 @@ namespace Vidorious
             spanMasterBc2.InnerText = "Upload";
             liMasterBc2.Controls.Add(spanMasterBc2);
             bcWrapper.Controls.Add(liMasterBc2);
+        }
+
+        protected void btnVideoUpload_Click(object sender, EventArgs e)
+        {
+            if (fileUpload.PostedFile != null)
+            {
+                using (BinaryReader br = new BinaryReader(fileUpload.PostedFile.InputStream))
+                {
+                    BusinessLogic.Validator valid = new BusinessLogic.Validator();
+                    BusinessLogic.VideoUpload videoUpload = new BusinessLogic.VideoUpload();
+
+                    try
+                    {
+                        byte[] bytes = br.ReadBytes((int)fileUpload.PostedFile.InputStream.Length);
+                        string fileExt = Path.GetExtension(fileUpload.PostedFile.FileName).ToLower();
+
+                        BusinessLogic.VideoUploadObject videoUploadObject = new BusinessLogic.VideoUploadObject()
+                        {
+                            Id = Guid.NewGuid(),
+                            Name = Path.GetFileName(fileUpload.PostedFile.FileName),
+                            Type = "video/" + fileExt,
+                            Data = bytes,
+                            DateCreated = DateTime.Now
+                        };
+
+                        valid = videoUpload.UploadVideos(videoUploadObject);
+
+                        if (valid.Status == BusinessLogic.Constants.Success)
+                        {
+                            lblMessage.Text = "Video Uploaded";
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        valid = new BusinessLogic.Validator() { ID = Guid.NewGuid(), Status = ex.Message };
+                    }
+                }
+            }
         }
     }
 }

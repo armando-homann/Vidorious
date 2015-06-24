@@ -46,5 +46,29 @@ namespace BusinessLogic
 
             return valid;
         }
+
+        public List<VideoUploadObject> GetVideos(out Validator valid)
+        {
+            List<VideoUploadObject> videoUploadObjectList = new List<VideoUploadObject>();
+
+            try
+            {
+                videoUploadObjectList = (from a in entity.Videos
+                                         select new VideoUploadObject
+                                         {
+                                           Id = a.Id,
+                                           Name = a.Name
+
+                                         }).ToList();
+
+                valid = new Validator { ID = Guid.NewGuid(), Status = Constants.Success };
+            }
+            catch(Exception e)
+            {
+                valid = new Validator { ID = Guid.NewGuid(), Status = e.Message };
+            }
+
+            return videoUploadObjectList;
+        }
     }
 }

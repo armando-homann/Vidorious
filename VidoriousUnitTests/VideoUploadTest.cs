@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace VidoriousUnitTests
 {
@@ -24,6 +25,15 @@ namespace VidoriousUnitTests
             };
 
             valid = videoUpload.UploadVideos(videoUploadObject);
+        }
+
+        [TestMethod]
+        public void GetVideosTest()
+        {
+            BusinessLogic.Validator valid = new BusinessLogic.Validator();
+            List<BusinessLogic.VideoUploadObject> videoUploadObjectList = new List<BusinessLogic.VideoUploadObject>();
+
+            videoUploadObjectList = videoUpload.GetVideos(out valid);
         }
     }
 }

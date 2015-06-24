@@ -21,7 +21,10 @@ namespace Vidorious
             // Display breadcrumb
             Breadcrumbs();
 
-            uploadPanel.Visible = false;
+            if (!IsPostBack)
+            {
+                BindGrid();
+            }
         }
 
         // Build Breadcrumb
@@ -46,47 +49,26 @@ namespace Vidorious
             bcWrapper.Controls.Add(liMasterBc2);
         }
 
-        protected void btnVideoUpload_Click(object sender, EventArgs e)
+        // Bind the DataList
+        private void BindGrid()
         {
-            if (fileUpload.PostedFile != null)
-            {
-                using (BinaryReader br = new BinaryReader(fileUpload.PostedFile.InputStream))
-                {
-                    BusinessLogic.Validator valid = new BusinessLogic.Validator();
-                    BusinessLogic.VideoUpload videoUpload = new BusinessLogic.VideoUpload();
+            BusinessLogic.VideoUpload VideoUpload = new BusinessLogic.VideoUpload();
+            BusinessLogic.Validator valid = new BusinessLogic.Validator();
 
-                    try
-                    {
-                        byte[] bytes = br.ReadBytes((int)fileUpload.PostedFile.InputStream.Length);
-                        string fileExt = Path.GetExtension(fileUpload.PostedFile.FileName).ToLower();
+            //var videoslist = VideoUpload.GetVideos(out valid);
 
-                        BusinessLogic.VideoUploadObject videoUploadObject = new BusinessLogic.VideoUploadObject()
-                        {
-                            Id = Guid.NewGuid(),
-                            Name = Path.GetFileName(fileUpload.PostedFile.FileName),
-                            Type = "video/" + fileExt,
-                            Data = bytes,
-                            DateCreated = DateTime.Now
-                        };
-
-                        valid = videoUpload.UploadVideos(videoUploadObject);
-
-                        if (valid.Status == BusinessLogic.Constants.Success)
-                        {
-                            lblMessage.Text = "Video Uploaded";
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        valid = new BusinessLogic.Validator() { ID = Guid.NewGuid(), Status = ex.Message };
-                    }
-                }
-            }
+            datalistVideos.DataSource = VideoUpload.GetVideos(out valid);
+            datalistVideos.DataBind();
         }
 
-        protected void btnShowVideoUpload_Click(object sender, EventArgs e)
+        private void BuildVideoListCarousel()
         {
-            uploadPanel.Visible = true;
+                //<div class="item spaced">
+                //    <img class="img-thumbnail" src="assets/images/projects/project-1.jpg" alt="">
+                //</div>
+
+            HtmlGenericControl videoDiv = new HtmlGenericControl("div");
+            HtmlGenericControl anchorParent = new HtmlGenericControl("a");
         }
     }
 }

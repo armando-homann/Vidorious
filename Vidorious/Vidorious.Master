@@ -129,7 +129,7 @@
                                             <ul class="dropdown-menu" role="menu">
                                                 <li><a href="Videos.aspx">Watch</a></li>
                                                 <%--<li class="divider"></li>--%>
-                                                <li><a class="modal-with-form" href="#modalForm">Upload</a></li>
+                                                <li><a href="Upload.aspx">Upload</a></li>
                                             </ul>
                                         </li>
                                         <li><a class="popup-with-move-anim" href="#small-dialog">About</a></li>
